@@ -11,6 +11,7 @@ angular.module('RailsAngularSkeleton', ['ui.router', 'templates', 'Devise'])
             $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|ftp|file|blob|chrome-extension):|data:image\/)/);
 
 
+            
             AuthProvider.registerPath('users');
 
             $stateProvider
