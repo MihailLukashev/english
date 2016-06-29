@@ -1,4 +1,4 @@
-angular.module('RailsAngularSkeleton', ['ui.router', 'templates', 'Devise'])
+angular.module('English', ['ui.router', 'templates', 'Devise'])
 
     .config([
         '$stateProvider',

@@ -1,4 +1,4 @@
-angular.module('RailsAngularSkeleton')
+angular.module('English')
     .controller('NavCtrl', ['$scope', 'Auth', function($scope, Auth){
 
         $scope.signedIn = Auth.isAuthenticated;

@@ -1,4 +1,4 @@
-angular.module('RailsAngularSkeleton')
+angular.module('English')
     .controller('AuthCtrl', ['$scope', '$state', 'Auth', function($scope, $state, Auth){
 
         $scope.login = function() {
