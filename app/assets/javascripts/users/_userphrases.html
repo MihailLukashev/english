@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h3>
+        User’s phrases page
+    </h3>
+</div>
+<table class="table-striped" width="600px">
+    <tr>
+        <th>Dislike</th>
+        <th>Like</th>
+        <th>Phrase</th>
+        <th>Created by</th>
+        <th>Buttons comments</th>
+    </tr>
+
+    <tr ng-repeat="phrase in phrases.data | orderBy: '-created_at'" height="40px">
+        <td>
+
+    <span class="glyphicon glyphicon-thumbs-down"
+          ng-click="decrementDownvotes(phrase)"></span>
+            {{phrase.upvotes}}
+        </td>
+        <td>
+                 <span class="glyphicon glyphicon-thumbs-up"
+                       ng-click="incrementUpvotes(phrase)"></span>
+
+        </td>
+        <td>
+            {{phrase.phrase}}
+        </td>
+
+        <td>
+            <a ng-href="/users/{{phrase.user.username}}/phrases">{{phrase.user.username}}</a>
+        </td>
+        <td>
+            <a href="/phrases/{{phrase.id}}">Comments</a>
+        </td>
+    </tr>
+</table>

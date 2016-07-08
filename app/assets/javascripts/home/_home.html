@@ -1,1 +1,53 @@
-<h1 style="margin-top: 150px">New App Edge</h1>
+<div ng-controller="PhrasesCtrl">
+<div class="page-header">
+    <h1>Homepage</h1>
+</div>
+    <div id="pagination" class="row" text-align="center">
+        <button class="pull-left btn btn-primary btn-sm" ng-disabled="firstPage()" ng-click="pageBack()">Previous</button>
+        <span>{{currentPage+1}} из {{numberOfPages()}}</span>
+        <button class="btn btn-primary btn-sm" ng-disabled="lastPage()" ng-click="pageForward()">Next</button>
+    </div>
+      <div ng-repeat="phrase in phrases | orderBy: '-upvotes' | startFrom: startingItem() | limitTo: itemsPerPage" height="40px">
+          <table>
+<tr>
+        <td>  <h3><span class="glyphicon glyphicon-thumbs-up"
+                        ng-click="incrementUpvotes(phrase)"></span>
+<br>
+              {{phrase.upvotes}}
+<br>
+                  <span class="glyphicon glyphicon-thumbs-down"
+                        ng-click="decrementDownvotes(phrase)"></span>
+    </h3>
+
+        </td>
+    <td>
+             <h3> &nbsp &nbsp Phrase: {{phrase.phrase}} &nbsp &nbsp {{phrase.likes}}</h3>
+
+
+              <h3> &nbsp &nbsp Translation: {{phrase.translate}}</h3>
+    </td>
+</tr>
+          <tr>
+              <td></td>
+              <td>
+          <h4 ng-repeat="example in phrase.examples | orderBy: '-upvotes' " ng-if="$first">
+                &nbsp &nbsp &nbsp {{example.body}}
+            </h4>
+
+               <h5> Posted by <a ng-href="/users/{{phrase.user.username}}/phrases">{{phrase.user.username}}</a>
+
+
+                <a href="/phrases/{{phrase.id}}">Comments</a></h5>
+              </td>
+          </tr>
+
+</table>
+      </div>
+    <br>
+    <div id="pagination" class="row" text-align="center">
+        <button class="pull-left btn btn-primary btn-sm" ng-disabled="firstPage()" ng-click="pageBack()">Previous</button>
+        <span>{{currentPage+1}} из {{numberOfPages()}}</span>
+        <button class="btn btn-primary btn-sm" ng-disabled="lastPage()" ng-click="pageForward()">Next</button>
+    </div>
+
+</div>

@@ -1,0 +1,45 @@
+
+<div class="page-header">
+    <h3>
+        {{phrase.phrase}}
+    </h3>
+</div>
+<div class="row">
+
+
+<form ng-submit="addExample()"
+      style="margin-top:30px;">
+    <h3>Add a new example</h3>
+
+    <div class="form-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Example"
+               ng-model="body">
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+</form>
+<br>
+    <table class="table-striped" width="600px">
+
+        <tr ng-repeat="example in phrase.examples | orderBy: '-created_at'" height="40px">
+            <td>
+
+    <span class="glyphicon glyphicon-thumbs-down"
+          ng-click="decrementDownvotes(example)"></span>
+                {{example.upvotes}}
+
+                 <span class="glyphicon glyphicon-thumbs-up"
+                       ng-click="incrementUpvotes(example)"></span>
+            </td>
+            <td>
+                {{example.body}}
+            </td>
+            <td>
+                posted by <a ng-href="/users/{{example.user.username}}/phrases">{{example.user.username}}</a>
+            </td>
+        </tr>
+    </table>
+
+
+    </div>

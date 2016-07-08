@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div class="page-header">
+    <h1>Create a phrase page</h1>
+</div>
+<div class="row" ng-controller="PhrasesCtrl">
+    <div class="col-md-6 col-md-offset-3">
+<form ng-submit="addPhrase()">
+    <div class="form-group">
+    <input type="text" class="form-control" placeholder="Phrase" ng-model="phrase">
+    <br>
+    </div>
+    <div class="form-group">
+    <input type="text" class="form-control" placeholder="Translate" ng-model="translate">
+    <br>
+</div>
+    <div class="form-group">
+    <input type="text" class="form-control" placeholder="Example" ng-model="example">
+    <br>
+    </div>
+    <label for="category"> Category: </label><br>
+    <select name="category" id="category" ng-model="category" value="common" required>
+        <option value="common" selected='selected'>Common</option>
+        <option value="actions">Actions</option>
+        <option value="time">Time</option>
+        <option value="productivity">Productivity</option>
+        <option value="apologies">Apologies</option>
+    </select><br><br>
+    <button type="submit" class="btn btn-primary">Add phrase</button>
+</form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

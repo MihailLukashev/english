@@ -1,9 +1,41 @@
+<style type="text/css">
+    .fa {
+        color: inherit;
+        padding-left: 10px;
+    }
+    .submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+        transition: 0.5s ease-in-out;
+        display: none;
+    }
+    ul li:hover .submenu {
+        display: block;
+        list-style: none;
+    }
+</style>
 <div class="collapse navbar-collapse pull-right" ng-controller="NavCtrl">
     <ul class="nav navbar-nav">
-        <li><a href="home">Home</a></li>
-        <li ng-hide="signedIn()"><a href="login">Log In</a></li>
-        <li ng-hide="signedIn()"><a href="register">Register</a></li>
-        <li ng-show="signedIn()"><a href="#">{{ user.username }}</a></li>
+        <li><a ui-sref="phrases">Home</a></li>
+        <li ng-hide="signedIn()"><a ui-sref="login">Log In</a></li>
+        <li ng-hide="signedIn()"><a ui-sref="register">Register</a></li>
+        <li ng-show="signedIn()"><a ui-sref="create_new">Create a phrase page</a></li>
+        <li ng-show="signedIn()"><a href="#">Category page<i class="fa fa-angle-down"></i></a>
+            <ul class="submenu">
+                <li><a ui-sref="category({category: 'common'})">Common</a></li>
+                <li><a ui-sref="category({category: 'actions'})">Actions</a></li>
+                <li><a ui-sref="category({category: 'time'})">Time</a></li>
+                <li><a ui-sref="category({category: 'productivity'})">Productivity</a></li>
+                <li><a ui-sref="category({category: 'apologies'})">Apologies</a></li>
+            </ul></li>
+        <li ng-show="signedIn()"><a ui-sref="newest">Newest phrases page</a></li>
+        <li ng-show="signedIn()"><a ui-sref="users">{{user.username}}</a></li>
         <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
     </ul>
 </div>

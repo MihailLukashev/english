@@ -1,0 +1,44 @@
+<div class="page-header">
+    <h3>
+        Newest phrases page
+    </h3>
+</div>
+
+<div ng-repeat="phrase in phrases | orderBy: '-created_at'" height="40px">
+
+    <table>
+        <tr>
+            <td>  <h3><span class="glyphicon glyphicon-thumbs-up"
+                            ng-click="incrementUpvotes(phrase)"></span>
+                <br>
+                {{phrase.upvotes}}
+                <br>
+                  <span class="glyphicon glyphicon-thumbs-down"
+                        ng-click="decrementDownvotes(phrase)"></span>
+            </h3>
+
+            </td>
+            <td>
+                <h3> &nbsp &nbsp Phrase: {{phrase.phrase}} &nbsp &nbsp {{phrase.likes}}</h3>
+
+
+                <h3> &nbsp &nbsp Translation: {{phrase.translate}}</h3>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <h4 ng-repeat="example in phrase.examples | orderBy: '-upvotes' " ng-if="$first">
+                    &nbsp &nbsp &nbsp {{example.body}}
+                </h4>
+
+                <h5> Posted by <a ng-href="/users/{{phrase.user.username}}/phrases">{{phrase.user.username}}</a>
+
+
+                    <a href="/phrases/{{phrase.id}}">Comments</a>
+                &nbsp Created {{phrase.created_at}}</h5>
+            </td>
+        </tr>
+
+    </table>
+</div>
