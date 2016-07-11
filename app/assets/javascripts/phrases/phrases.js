@@ -3,13 +3,7 @@ angular.module('english')
         '$http',
         function($http){
         var o = {
-            phrases: [
-                // {phrase: 'post 1', translate: 'пост 1', example: 'alsdkf', downvotes: 5, upvotes: 5},
-                // {phrase: 'post 2', translate: 'пост 1', example: 'alsdkf', downvotes: 5, upvotes: 5},
-                // {phrase: 'post 3', translate: 'пост 1', example: 'alsdkf', downvotes: 5, upvotes: 5},
-                // {phrase: 'post 4', translate: 'пост 1', example: 'alsdkf', downvotes: 5, upvotes: 5},
-                // {phrase: 'post 5', translate: 'пост 1', example: 'alsdkf', downvotes: 5, upvotes: 5}
-            ]
+            phrases: []
             
         };
         o.getAll = function() {
@@ -24,6 +18,7 @@ angular.module('english')
         };
         o.upvote = function(phrase) {
             return $http.put('/api/phrases/' + phrase.id + '/uplike.json').success(function(data){
+                debugger
                 phrase.upvotes += 1;
             });
         };
@@ -46,8 +41,9 @@ angular.module('english')
         };
 
         o.getCategoryPhrases = function(category){
-            return $http.get('/api/phrases/category/' + category + '.json').success(function (res) {
-                return res.data;
+            return $http.get('/api/phrases/category/' + category + '.json').success(function (data) {
+
+                angular.copy(data, o.phrases);
             });
         };
 

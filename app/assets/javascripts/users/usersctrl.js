@@ -7,5 +7,12 @@ angular.module('english')
 
     function($scope, phrases, userPhrases){
         $scope.phrases = userPhrases;
-       
+
+        $scope.incrementUpvotes = function(phrase) {
+
+            phrases.upvote(phrase);
+        };
+        $scope.decrementDownvotes = function(phrase) {
+            phrases.downvote(phrase);
+        };
 }]);

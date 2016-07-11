@@ -1,9 +1,9 @@
 <div class="page-header">
     <h1>Category - {{category}}</h1>
 </div>
+<table class="table-striped" width="600px">
 <tr ng-repeat="phrase in phrases | orderBy: '-created_at'" height="40px">
     <td>
-
     <span class="glyphicon glyphicon-thumbs-down"
           ng-click="decrementDownvotes(phrase)"></span>
         {{phrase.upvotes}}
@@ -11,12 +11,10 @@
     <td>
                  <span class="glyphicon glyphicon-thumbs-up"
                        ng-click="incrementUpvotes(phrase)"></span>
-
     </td>
     <td>
         {{phrase.phrase}}
     </td>
-
     <td>
         <a ng-href="/users/{{phrase.user.username}}/phrases">{{phrase.user.username}}</a>
     </td>
@@ -24,3 +22,4 @@
         <a href="/phrases/{{phrase.id}}">Comments</a>
     </td>
 </tr>
+</table>

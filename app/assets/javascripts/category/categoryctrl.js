@@ -3,10 +3,17 @@ angular.module('english')
     '$scope',
     '$stateParams',
     'phrases',
-    'categoryPhrases',
-    function($scope, $stateParams, phrases, categoryPhrases){
+
+    function($scope, $stateParams, phrases){
         $scope.category = $stateParams.category;
-        $scope.phrases = categoryPhrases;
-        debugger
+        $scope.phrases = phrases.phrases;
+
+        $scope.incrementUpvotes = function(phrase) {
+
+            phrases.upvote(phrase);
+        };
+        $scope.decrementDownvotes = function(phrase) {
+            phrases.downvote(phrase);
+        };
     }
 ]);

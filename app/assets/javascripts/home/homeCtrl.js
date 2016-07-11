@@ -23,7 +23,7 @@ angular.module('english')
                 $scope.phrase = '';
                 $scope.translate = '';
                 $scope.example = '';
-
+                
 
 
             };

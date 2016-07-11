@@ -27,7 +27,7 @@ angular.module('english', ['ui.router', 'templates', 'Devise'])
                 .state('create_new', {
                     url: '/phrases/new',
                     templateUrl: 'phrases/_phrasesnew.html',
-                    // controller: 'PhrasesCtrl'
+                    controller: 'PhrasesCtrl'
                 })
 
                 .state('phrases_id', {
@@ -36,13 +36,13 @@ angular.module('english', ['ui.router', 'templates', 'Devise'])
                     controller: 'ExamplesCtrl',
                     resolve: {
                         phrase: ['$stateParams', 'phrases', function ($stateParams, phrases){
-                            return phrases.get($stateParams.id)
+                            return phrases.get($stateParams.id);
                         }]
                     }
                 })
                 .state('users', {
                     url: '/users/{username}',
-                    templateUrl: 'users/_user.html',
+                    templateUrl: 'users/_user.html'
                     // controller: 'UsersCtrl'
                 })
                 .state('users/phrases', {
@@ -102,12 +102,11 @@ angular.module('english', ['ui.router', 'templates', 'Devise'])
                     }
                 })
                 .state('category', {
-                    url: '/phrases/category/:category',
+                    url: '/phrases/category/{category}',
                     templateUrl: 'category/_category.html',
                     controller: 'CategoryCtrl',
                     resolve: {
                         categoryPhrases: ['$stateParams', 'phrases', function($stateParams, phrases){
-                            
                             return phrases.getCategoryPhrases($stateParams.category);
                         }]
                     }

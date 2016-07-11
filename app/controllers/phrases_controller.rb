@@ -1,5 +1,5 @@
 class PhrasesController < ApplicationController
-before_filter :authenticate_user!, only: [:create, :upvotes, :downvotes ]
+before_filter :authenticate_user!, only: [:create, :uplikes, :downlikes ]
 
   def index
     respond_to do |format|
@@ -25,9 +25,9 @@ before_filter :authenticate_user!, only: [:create, :upvotes, :downvotes ]
   end
 
   def show_category
+     phrases = Phrase.where(category: params[:category])
 
-    respond_with Phrase.where(category: params[:category])
-
+     respond_with phrases
   end
 
   def edit
@@ -38,16 +38,21 @@ before_filter :authenticate_user!, only: [:create, :upvotes, :downvotes ]
 
   def uplikes
     @phrase = Phrase.find(params[:id])
-    @phrase.increment!(:upvotes)
-    @phrase.likes.create
 
-    respond_with @phrase
+  unless @phrase.likes.any?{ |h| h.user_id == current_user.id}
+      @phrase.likes.create(user_id: current_user.id)
+      @phrase.increment!(:upvotes)
+  end
+    @likes = @phrase.likes
+    respond_with @phrase, @likes
   end
 
   def downlikes
     @phrase = Phrase.find(params[:id])
+    unless @phrase.likes.any?{ |h| h.user_id == current_user.id}
     @phrase.decrement!(:upvotes)
-    @phrase.likes.create
+    @phrase.likes.create(user_id: current_user.id)
+    end
     respond_with @phrase
   end
 

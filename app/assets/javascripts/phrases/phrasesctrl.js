@@ -35,6 +35,7 @@ angular.module('english')
          $state.go('phrases');
 
      };
+        
         $scope.currentPage = 0;
         $scope.itemsPerPage = 10;
         $scope.items = [];
@@ -61,6 +62,7 @@ angular.module('english')
 
 
         $scope.incrementUpvotes = function(phrase) {
+
             phrases.upvote(phrase);
         };
         $scope.decrementDownvotes = function(phrase) {

@@ -1,5 +1,5 @@
 class ExamplesController < ApplicationController
-before_filter :authenticate_user!, only: [:create, :upvotes, :downvotes]
+before_filter :authenticate_user!, only: [:create, :uplikes, :downlikes]
 
   def create
     phrase = Phrase.find(params[:phrase_id])
@@ -8,19 +8,23 @@ before_filter :authenticate_user!, only: [:create, :upvotes, :downvotes]
   end
 
   def uplikes
-    phrase = Phrase.find(params[:phrase_id])
-    example = phrase.examples.find(params[:id])
-    example.increment!(:upvotes)
-    example.likes.create
-    respond_with phrase, example
+    @phrase = Phrase.find(params[:phrase_id])
+    @example = @phrase.examples.find(params[:id])
+    unless @example.likes.any?{ |h| h.user_id == current_user.id}
+    @example.increment!(:upvotes)
+    @example.likes.create(user_id: current_user.id)
+    end
+    respond_with @phrase, @example
   end
 
   def downlikes
-    phrase = Phrase.find(params[:phrase_id])
-    example = phrase.examples.find(params[:id])
-    example.decrement!(:upvotes)
-example.likes.create
-    respond_with phrase, example
+    @phrase = Phrase.find(params[:phrase_id])
+    @example = @phrase.examples.find(params[:id])
+    unless @example.likes.any?{ |h| h.user_id == current_user.id}
+      @example.decrement!(:upvotes)
+      @example.likes.create(user_id: current_user.id)
+    end
+    respond_with @phrase, @example
   end
 
   private
