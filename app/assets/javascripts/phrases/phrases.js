@@ -1,12 +1,14 @@
 angular.module('english')
     .factory('phrases',  [
         '$http',
+        
         function($http){
 
         var o = {
             phrases: []
             
         };
+            
         o.getAll = function() {
             return $http.get('/api/phrases.json').success(function (data) {
                 angular.copy(data, o.phrases);
@@ -19,8 +21,6 @@ angular.module('english')
         };
         o.upvote = function(phrase) {
             
-
-            // if (phrase.likes.length === 0) { phrase.upvotes += 1; }
             return $http.put('/api/phrases/' + phrase.id + '/uplike.json', {}).success(function(res){
                 // updated phrase
                 angular.merge(phrase, res);

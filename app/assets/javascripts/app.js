@@ -24,6 +24,11 @@ angular.module('english', ['ui.router', 'templates', 'Devise'])
             // AuthProvider.registerPath('users');
 
             $stateProvider
+                .state('welcome', {
+                    url: '/',
+                    templateUrl: 'home/_index.html'
+                    
+                })
                 .state('create_new', {
                     url: '/phrases/new',
                     templateUrl: 'phrases/_phrasesnew.html',

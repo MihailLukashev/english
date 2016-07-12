@@ -1,11 +1,12 @@
 angular.module('english')
 .controller('ExamplesCtrl', [
     '$scope',
+    'Auth',
     'phrases',
     'phrase',
-        function($scope, phrases, phrase) {
+        function($scope, Auth, phrases, phrase) {
             $scope.phrase = phrase;
-
+           $scope.user = Auth.currentUser();
             $scope.addExample = function() {
                 if ($scope.body === '') {return;}
                 phrases.addExample(phrase.id, {
@@ -23,16 +24,13 @@ angular.module('english')
             };
 
             $scope.editPhrase = function(){
-                debugger
                 phrases.editPhrase({
-
                        phrase: $scope.phrase,
                        translate: $scope.translate
-
                 })
             };
 
-
+debugger
 
             $scope.incrementUpvotes = function(example){
                 phrases.upvoteExample(phrase, example);
