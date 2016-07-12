@@ -2,6 +2,7 @@ angular.module('english')
     .factory('phrases',  [
         '$http',
         function($http){
+
         var o = {
             phrases: []
             
@@ -17,14 +18,18 @@ angular.module('english')
             });
         };
         o.upvote = function(phrase) {
-            return $http.put('/api/phrases/' + phrase.id + '/uplike.json').success(function(data){
-                debugger
-                phrase.upvotes += 1;
+            
+
+            // if (phrase.likes.length === 0) { phrase.upvotes += 1; }
+            return $http.put('/api/phrases/' + phrase.id + '/uplike.json', {}).success(function(res){
+                // updated phrase
+                angular.merge(phrase, res);
+
             });
         };
         o.downvote = function(phrase) {
-            return $http.put('/api/phrases/' + phrase.id + '/downlike.json').success(function(data){
-                phrase.upvotes -= 1;
+            return $http.put('/api/phrases/' + phrase.id + '/downlike.json', {}).success(function(res){
+                angular.merge(phrase, res);
             });
         };
         o.get = function(id){
@@ -35,8 +40,8 @@ angular.module('english')
 
 
         o.getUserPhrases = function(username){
-            return $http.get('/api/users/' + username + '/phrases.json').success(function (res) {
-                return res.data;
+            return $http.get('/api/users/' + username + '/phrases.json').success(function (data) {
+                angular.copy(data, o.phrases);
             });
         };
 
@@ -52,13 +57,20 @@ angular.module('english')
             return $http.post('/api/phrases/' +id + '/examples.json', example);
         };
         o.upvoteExample = function(phrase, example){
-            return $http.put('/api/phrases/' + phrase.id + '/examples/' + example.id + '/uplike.json').success(function(data){
-                example.upvotes += 1;
+            return $http.put('/api/phrases/' + phrase.id + '/examples/' + example.id + '/uplike.json', {}).success(function(res){
+                angular.merge(example, res);
+
             });
         };
         o.downvoteExample = function(phrase, example){
-            return $http.put('/api/phrases/' + phrase.id + '/examples/' + example.id + '/downlike.json').success(function(data){
-                example.upvotes -= 1;
+            return $http.put('/api/phrases/' + phrase.id + '/examples/' + example.id + '/downlike.json', {}).success(function(res){
+                angular.merge(example, res);
+            });
+        };
+
+        o.editPhrase = function(phrase){
+            return $http.put('/api/phrases/' + phrase.phrase.id + '.json',{phrase: phrase.phrase}).success(function(res){
+                angular.copy(phrase, res);
             });
         };
         return o;

@@ -28,10 +28,10 @@ angular.module('english')
 
             };
 
-            $scope.incrementUpvotes = function(post) {
-                post.upvotes += 1;
+            $scope.incrementUpvotes = function(phrase) {
+                phrase.upvotes += 1;
             };
-            $scope.decrementDownvotes = function(post) {
-                post.downvotes -= 1;
+            $scope.decrementDownvotes = function(phrase) {
+                phrase.downvotes -= 1;
             };
         }]);

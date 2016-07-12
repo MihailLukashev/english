@@ -42,8 +42,8 @@ angular.module('english', ['ui.router', 'templates', 'Devise'])
                 })
                 .state('users', {
                     url: '/users/{username}',
-                    templateUrl: 'users/_user.html'
-                    // controller: 'UsersCtrl'
+                    templateUrl: 'users/_user.html',
+                    controller: 'UserCtrl'
                 })
                 .state('users/phrases', {
                     url: '/users/{username}/phrases',

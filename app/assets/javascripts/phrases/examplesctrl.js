@@ -5,6 +5,7 @@ angular.module('english')
     'phrase',
         function($scope, phrases, phrase) {
             $scope.phrase = phrase;
+
             $scope.addExample = function() {
                 if ($scope.body === '') {return;}
                 phrases.addExample(phrase.id, {
@@ -20,6 +21,19 @@ angular.module('english')
                 });
                 $scope.body = '';
             };
+
+            $scope.editPhrase = function(){
+                debugger
+                phrases.editPhrase({
+
+                       phrase: $scope.phrase,
+                       translate: $scope.translate
+
+                })
+            };
+
+
+
             $scope.incrementUpvotes = function(example){
                 phrases.upvoteExample(phrase, example);
             };

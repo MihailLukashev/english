@@ -5,7 +5,7 @@ class Example < ActiveRecord::Base
 
 
   def as_json(options = {})
-    super(options.merge(include: :user))
+    super(options.merge(include: [:user, :likes]))
   end
 
 end

@@ -1,12 +1,14 @@
 angular.module('english')
 .controller('UsersCtrl',  [
     '$scope',
+    '$stateParams',
     'phrases',
-    'userPhrases',
-
-
-    function($scope, phrases, userPhrases){
-        $scope.phrases = userPhrases;
+    
+    function($scope, $stateParams, phrases){
+        $scope.phrases = phrases.phrases;
+        $scope.username = $stateParams.username;
+        $scope.user = phrases.phrases[0].user;
+       
 
         $scope.incrementUpvotes = function(phrase) {
 

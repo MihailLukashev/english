@@ -1,8 +1,9 @@
 <div class="page-header">
     <h3>
-        User’s phrases page
+        User’s phrases page {{username}} - Activity: {{user.activity}} - Expertise: {{user.expertise}}
     </h3>
 </div>
+
 <table class="table-striped" width="600px">
     <tr>
         <th>Dislike</th>
@@ -12,7 +13,7 @@
         <th>Buttons comments</th>
     </tr>
 
-    <tr ng-repeat="phrase in phrases.data | orderBy: '-created_at'" height="40px">
+    <tr ng-repeat="phrase in phrases | orderBy: '-created_at'" height="40px">
         <td>
 
     <span class="glyphicon glyphicon-thumbs-down"
